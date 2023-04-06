@@ -7,23 +7,58 @@ export const Updatestory = (req, res) => {
   
     jwt.verify(token, "secretkey", (err, userInfo) => {
       if (err) return res.status(403).json("Token is not valid!");
-  
+      
       const q =
-      "INSERT INTO stories (`img`,`userId`) VALUES (?)";
+      "SELECT * FROM stories WHERE userId = ?";
 
-      const values = [
-        req.body.status, 
-        userInfo.id,
-      ];
-  
-      db.query(
-        q,
-        [values],
-        (err, data) => {
-          if (err) res.status(500).json(err);
-          if (data.affectedRows > 0) return res.json("Updated!");
-          return res.status(403).json("You can update only your post!");
+
+      db.query(q, [userInfo.id], (err, data) => {
+
+        if (err) 
+        {
+          return res.status(500).json(err);  
         }
-      );
-    });
-  };
+
+        if (data.length)
+        {
+          const q =
+            "UPDATE stories SET `img`=? WHERE `userId` = ?";
+
+        
+            db.query(
+              q,
+              [req.body.status, 
+                userInfo.id],
+              (err, data) => {
+                if (err) res.status(500).json(err);
+                return res.status(403).json("Story Updated");
+              }
+            );
+        }
+        else
+        {
+          const q =
+          "INSERT INTO stories (`img`,`userId`) VALUES (?)";
+    
+          const values = [
+            req.body.status, 
+            userInfo.id,
+          ];
+      
+          db.query(
+            q,
+            [values],
+            (err, data) => {
+              if (err) res.status(500).json(err);
+              if (data.affectedRows > 0) return res.json("Story Added!");
+              return res.status(403).json("You can add only your story!");
+            }
+          );
+        }
+
+      });
+
+
+   
+});
+};

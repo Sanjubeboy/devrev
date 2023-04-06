@@ -9,7 +9,16 @@ export const register = (req, res) => {
 
   db.query(q, [req.body.username], (err, data) => {
     if (err) return res.status(500).json(err);
+    // if(req.body.username == "" || req.body.email == "" || req.body.name == "" || req.body.password == "")
+    // {
+    //   return res.status(500).json("All fields are required!!");
+    // }
     if (data.length) return res.status(409).json("User already exists!");
+
+    if(req.body.username == "" || req.body.email == "" || req.body.name == "" || req.body.password == "")
+    {
+      return res.status(500).json("All fields are required!!");
+    }
     //CREATE A NEW USER
     //Hash the password
     const salt = bcrypt.genSaltSync(10);

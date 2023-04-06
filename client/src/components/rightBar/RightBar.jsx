@@ -1,8 +1,8 @@
 import "./rightBar.scss";
-import { AuthContext } from "../../context/authContext";
+// import { AuthContext } from "../../context/authContext";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
-import { useContext } from "react";
+// import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 
@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const RightBar = () => {
 
 
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
 
   const object = JSON.parse(localStorage.getItem("user"));
   const user_id = object.id;
@@ -28,7 +28,7 @@ const RightBar = () => {
     <div className="rightBar">
       <div className="container">
         <div className="item">
-          <span>Suggestions For You</span>
+          <span>People you may know</span>
           {
             error
               ? "Something went wrong"
@@ -57,7 +57,7 @@ const RightBar = () => {
             }
         </div>
         <div className="item">
-          <span>Latest Activities</span>
+          <span>Recent Activities</span>
           <div className="user">
             <div className="userInfo">
               <img
@@ -65,10 +65,10 @@ const RightBar = () => {
                 alt=""
               />
               <p>
-                <span>Jane Doe</span> changed their cover picture
+                <span>gojo</span> updated their cover picture
               </p>
             </div>
-            <span>1 min ago</span>
+            <span>3 min ago</span>
           </div>
           <div className="user">
             <div className="userInfo">
@@ -77,10 +77,10 @@ const RightBar = () => {
                 alt=""
               />
               <p>
-                <span>Jane Doe</span> changed their cover picture
+                <span>Sanjay</span> added to his story
               </p>
             </div>
-            <span>1 min ago</span>
+            <span>30 min ago</span>
           </div>
           <div className="user">
             <div className="userInfo">
@@ -89,10 +89,10 @@ const RightBar = () => {
                 alt=""
               />
               <p>
-                <span>Jane Doe</span> changed their cover picture
+                <span>Beboy</span> changed their cover picture
               </p>
             </div>
-            <span>1 min ago</span>
+            <span>13 min ago</span>
           </div>
           <div className="user">
             <div className="userInfo">
@@ -101,13 +101,13 @@ const RightBar = () => {
                 alt=""
               />
               <p>
-                <span>Jane Doe</span> changed their cover picture
+                <span>Thalapathy</span> added to their story
               </p>
             </div>
-            <span>1 min ago</span>
+            <span>1 hr ago</span>
           </div>
         </div>
-        <div className="item">
+        {/* <div className="item">
           <span>Online Friends</span>
           <div className="user">
             <div className="userInfo">
@@ -219,7 +219,7 @@ const RightBar = () => {
               <span>Jane Doe</span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
