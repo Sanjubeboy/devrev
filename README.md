@@ -1,3 +1,13 @@
+# DEVREV
+# SOCIAL MEDIA APPLICATION
+
+This is basic social media application created using React, Mysql, Node and express.
+
+In this project , the user can follow their friends and view their story and view their posts.
+
+![Home page](client/src/assets/output.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
