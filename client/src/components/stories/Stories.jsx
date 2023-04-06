@@ -1,11 +1,14 @@
 import { useContext } from "react";
+import { useState } from "react";
 import "./stories.scss";
 import { AuthContext } from "../../context/authContext";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
+import Updatestory from "../../components/Updatestory/Updatestory";
 
 
 const Stories = () => {
+  const [openUpdate, setOpenUpdate] = useState(false);
   const { currentUser } = useContext(AuthContext);
 
   const { isLoading, error, data } = useQuery(["stories"], () => 
@@ -23,7 +26,8 @@ const Stories = () => {
       <div className="story">
         <img src={"/upload/" + currentUser.profilePic} alt="" />
         <span>{currentUser.name}</span>
-        <button>+</button>
+        {/* <button>+</button> */}
+        <button onClick={() => setOpenUpdate(true)}>+</button>
       </div>
       {error
         ? "Something went wrong"
@@ -35,6 +39,7 @@ const Stories = () => {
               <span>{story.name}</span>
             </div>
           ))}
+          {openUpdate && <Updatestory setOpenUpdate={setOpenUpdate} user={data} />}
     </div>
   );
 };

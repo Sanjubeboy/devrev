@@ -7,6 +7,7 @@ import storyRoutes from "./routes/stories.js";
 import commentRoutes from "./routes/comments.js";
 import likeRoutes from "./routes/likes.js";
 import usersRoutes from "./routes/getUsers.js";
+import updatestoryRoutes from "./routes/Updatestory.js";
 
 import relationshipRoutes from "./routes/relationships.js";
 import cors from "cors";
@@ -50,6 +51,7 @@ app.use("/api/likes", likeRoutes);
 app.use("/api/relationships", relationshipRoutes);
 app.use("/api/stories",storyRoutes);
 app.use("/api/getUsers",usersRoutes);
+app.use("/api/Updatestory",updatestoryRoutes);
 
 app.listen(8800, () => {
   console.log("API working!");
